@@ -224,3 +224,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Built with ❤️ for students who want to optimize their learning experience**
+
+Updated for PR
+
+Updated by BalaNerd
