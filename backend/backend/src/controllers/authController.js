@@ -12,7 +12,11 @@ import { Op, ValidationError, UniqueConstraintError } from 'sequelize';
 const generateTokens = (userId) => {
   console.log('[Auth Controller] Generating tokens for userId:', userId);
 
+<<<<<<< HEAD
+  if (!process.env.JWT_SECRET) {
+=======
   if (!process.env.JWT_ACCESS_SECRET || !process.env.JWT_REFRESH_SECRET) {
+>>>>>>> upstream/main
     console.error('[Auth Controller] JWT secrets not configured!');
     throw new Error('JWT secrets not configured');
   }
@@ -20,14 +24,24 @@ const generateTokens = (userId) => {
   try {
     const accessToken = jwt.sign(
       { userId },
+<<<<<<< HEAD
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRE || '7d' }
+=======
       process.env.JWT_ACCESS_SECRET,
       { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m' }
+>>>>>>> upstream/main
     );
 
     const refreshToken = jwt.sign(
       { userId },
+<<<<<<< HEAD
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' }
+=======
       process.env.JWT_REFRESH_SECRET,
       { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' }
+>>>>>>> upstream/main
     );
 
     console.log('[Auth Controller] Tokens generated successfully');

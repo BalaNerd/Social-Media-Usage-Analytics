@@ -1,4 +1,9 @@
 import UsageLog from '../models/UsageLog.js';
+<<<<<<< HEAD
+import StudySession from '../models/StudySession.js';
+import StudyGoal from '../models/StudyGoal.js';
+=======
+>>>>>>> upstream/main
 import { asyncHandler } from '../middleware/errorHandler.js';
 import { Op, fn, col, literal } from 'sequelize';
 import {
@@ -100,6 +105,35 @@ export const getDashboard = asyncHandler(async (req, res) => {
   const dailyTimeSeries = getTimeSeriesData(convertToPlain(weeklyLogs), 'daily');
   const weeklyTimeSeries = getTimeSeriesData(convertToPlain(monthlyLogs), 'weekly');
 
+<<<<<<< HEAD
+  // Fetch study data for integrated insights
+  const sevenDaysAgoStudy = new Date();
+  sevenDaysAgoStudy.setDate(sevenDaysAgoStudy.getDate() - 7);
+
+  const [studySessions, studyGoals] = await Promise.all([
+    StudySession.find({
+      user: userId,
+      isCompleted: true,
+      startTime: { $gte: sevenDaysAgoStudy }
+    }),
+    StudyGoal.find({ user: userId })
+  ]);
+
+  // Calculate study insights
+  const totalStudyMinutes = studySessions.reduce((sum, session) => sum + (session.duration || 0), 0);
+  const totalStudyHours = totalStudyMinutes / 60;
+  const averageFocusScore = studySessions.length > 0 
+    ? studySessions.reduce((sum, session) => sum + (session.focusScore || 0), 0) / studySessions.length 
+    : 0;
+
+  // Generate study-social media balance recommendations
+  const balanceRecommendations = generateBalanceRecommendations(
+    weeklyStats,
+    { totalHours: totalStudyHours, sessions: studySessions.length, focusScore: averageFocusScore }
+  );
+
+=======
+>>>>>>> upstream/main
   res.json({
     success: true,
     data: {
@@ -114,7 +148,17 @@ export const getDashboard = asyncHandler(async (req, res) => {
         name: app.name,
         minutes: app.minutes
       })) || [],
+<<<<<<< HEAD
+      recommendations: [...recommendations, ...balanceRecommendations],
+      study: {
+        totalHours: Math.round(totalStudyHours * 10) / 10,
+        sessions: studySessions.length,
+        averageFocusScore: Math.round(averageFocusScore),
+        goals: studyGoals.length
+      },
+=======
       recommendations,
+>>>>>>> upstream/main
       charts: {
         daily: dailyTimeSeries,
         weekly: weeklyTimeSeries
@@ -234,3 +278,44 @@ export const getRiskScore = asyncHandler(async (req, res) => {
     }
   });
 });
+<<<<<<< HEAD
+
+// Helper function to generate study-social media balance recommendations
+function generateBalanceRecommendations(usageStats, studyStats) {
+  const recommendations = [];
+  
+  // Check if study time is balanced with social media time
+  const weeklySocialMinutes = usageStats.totalMinutes || 0;
+  const weeklyStudyMinutes = studyStats.totalHours * 60;
+  
+  if (weeklySocialMinutes > weeklyStudyMinutes * 2) {
+    recommendations.push({
+      type: 'warning',
+      title: 'Balance Study & Social Time',
+      message: 'Consider reducing social media time or increasing study time for better balance.',
+      priority: 'high'
+    });
+  }
+  
+  if (studyStats.sessions > 0 && studyStats.focusScore < 60) {
+    recommendations.push({
+      type: 'info',
+      title: 'Improve Focus',
+      message: 'Your focus score is low. Try to Pomodoro technique during study sessions.',
+      priority: 'medium'
+    });
+  }
+  
+  if (studyStats.totalHours < 10) {
+    recommendations.push({
+      type: 'info',
+      title: 'Increase Study Time',
+      message: 'Aim for at least 10 study hours per week for better academic performance.',
+      priority: 'medium'
+    });
+  }
+  
+  return recommendations;
+}
+=======
+>>>>>>> upstream/main

@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
+<<<<<<< HEAD
+import { Link } from 'react-router-dom';
+import { analyticsAPI, usageAPI, studyAPI } from '../services/api';
+=======
 import { analyticsAPI, usageAPI } from '../services/api';
+>>>>>>> upstream/main
 import { UsageEntry } from '../components/UsageEntry';
 import { UsageHistory } from '../components/UsageHistory';
 import { DigitalHonestyScore } from '../components/DigitalHonestyScore';
@@ -12,6 +17,10 @@ const COLORS = ['#0ea5e9', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
 export const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [usageEntries, setUsageEntries] = useState([]);
+<<<<<<< HEAD
+  const [studyData, setStudyData] = useState(null);
+=======
+>>>>>>> upstream/main
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
@@ -19,8 +28,23 @@ export const Dashboard = () => {
   useEffect(() => {
     fetchDashboardData();
     fetchUsageEntries();
+<<<<<<< HEAD
+    fetchStudyData();
   }, [refreshKey]);
 
+  const fetchStudyData = async () => {
+    try {
+      const response = await studyAPI.getAnalytics({ period: 'week' });
+      setStudyData(response.data.data);
+    } catch (err) {
+      console.error('Failed to load study data:', err);
+    }
+  };
+
+=======
+  }, [refreshKey]);
+
+>>>>>>> upstream/main
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
@@ -98,6 +122,39 @@ export const Dashboard = () => {
         </button>
       </div>
 
+<<<<<<< HEAD
+      {/* Study Overview */}
+      {studyData && (
+        <div className="card">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold">Study Overview</h2>
+            <Link to="/study-hub" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">
+              View Study Hub →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{studyData.totalHours}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Study Hours (Week)</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-green-600 dark:text-green-400">{studyData.studyStreak}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Day Streak</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{studyData.averageFocusScore}%</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Focus Score</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">{studyData.totalSessions}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Total Sessions</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+=======
+>>>>>>> upstream/main
       {/* Risk Score Badge */}
       <div className="card">
         <div className="flex items-center justify-between mb-4">

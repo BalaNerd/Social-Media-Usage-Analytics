@@ -28,6 +28,10 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+<<<<<<< HEAD
+    "nodemon": "^3.1.14"
+=======
     "nodemon": "^3.1.11"
+>>>>>>> upstream/main
   }
 }

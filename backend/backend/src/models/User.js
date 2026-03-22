@@ -47,7 +47,13 @@ const User = sequelize.define('User', {
       notEmpty: {
         msg: 'Email cannot be empty'
       },
+<<<<<<< HEAD
+      set(value) {
+        this.setDataValue('email', value ? value.toLowerCase() : value);
+      }
+=======
       toLowerCase: true
+>>>>>>> upstream/main
     }
   },
   password: {

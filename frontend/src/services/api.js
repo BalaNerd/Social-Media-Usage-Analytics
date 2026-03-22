@@ -89,4 +89,27 @@ export const analyticsAPI = {
   getRiskScore: () => api.get('/analytics/risk-score')
 };
 
+<<<<<<< HEAD
+// Study API
+export const studyAPI = {
+  // Study Sessions
+  startSession: (data) => api.post('/study/sessions/start', data),
+  endSession: (sessionId, data) => api.post(`/study/sessions/${sessionId}/end`, data),
+  updateSession: (sessionId, data) => api.put(`/study/sessions/${sessionId}`, data),
+  deleteSession: (sessionId) => api.delete(`/study/sessions/${sessionId}`),
+  getActiveSession: () => api.get('/study/sessions/active'),
+  getSessions: (params) => api.get('/study/sessions', { params }),
+  
+  // Study Goals
+  createGoal: (data) => api.post('/study/goals', data),
+  getGoals: (params) => api.get('/study/goals', { params }),
+  updateGoal: (goalId, data) => api.put(`/study/goals/${goalId}`, data),
+  deleteGoal: (goalId) => api.delete(`/study/goals/${goalId}`),
+  
+  // Study Analytics
+  getAnalytics: (params) => api.get('/study/analytics', { params })
+};
+
+=======
+>>>>>>> upstream/main
 export default api;
