@@ -32,31 +32,6 @@ export const Layout = ({ children }) => {
               Social Media Analytics
             </Link>
             
-            <nav className="flex items-center space-x-6">
-              {user && (
-                <>
-                  <Link to="/dashboard" className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
-                    Dashboard
-                  </Link>
-                  <Link to="/mirror" className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
-                    Mirror Mode
-                  </Link>
-                  <Link to="/regret-simulator" className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
-                    Regret Simulator
-                  </Link>
-                  <Link to="/before-after" className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
-                    Before/After
-                  </Link>
-<<<<<<< HEAD
-                  <Link to="/study-hub" className="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
-                    Study Hub
-                  </Link>
-=======
->>>>>>> upstream/main
-                </>
-              )}
-            </nav>
-            
             <div className="flex items-center space-x-4">
               {user && (
                 <>

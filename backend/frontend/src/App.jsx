@@ -6,13 +6,6 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
-import { DigitalMirrorMode } from './pages/DigitalMirrorMode';
-import { FutureRegretSimulator } from './pages/FutureRegretSimulator';
-import { BeforeAfterTracking } from './pages/BeforeAfterTracking';
-<<<<<<< HEAD
-import { StudyHub } from './pages/StudyHub';
-=======
->>>>>>> upstream/main
 import { useEffect } from 'react';
 
 function App() {
@@ -50,49 +43,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/mirror"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <DigitalMirrorMode />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/regret-simulator"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <FutureRegretSimulator />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/before-after"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <BeforeAfterTracking />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-<<<<<<< HEAD
-      <Route
-        path="/study-hub"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <StudyHub />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-=======
->>>>>>> upstream/main
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

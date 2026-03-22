@@ -1,6 +1,9 @@
 import UsageLog from '../models/UsageLog.js';
+<<<<<<< HEAD
 import StudySession from '../models/StudySession.js';
 import StudyGoal from '../models/StudyGoal.js';
+=======
+>>>>>>> upstream/main
 import { asyncHandler } from '../middleware/errorHandler.js';
 import { Op, fn, col, literal } from 'sequelize';
 import {
@@ -102,6 +105,7 @@ export const getDashboard = asyncHandler(async (req, res) => {
   const dailyTimeSeries = getTimeSeriesData(convertToPlain(weeklyLogs), 'daily');
   const weeklyTimeSeries = getTimeSeriesData(convertToPlain(monthlyLogs), 'weekly');
 
+<<<<<<< HEAD
   // Fetch study data for integrated insights
   const sevenDaysAgoStudy = new Date();
   sevenDaysAgoStudy.setDate(sevenDaysAgoStudy.getDate() - 7);
@@ -128,6 +132,8 @@ export const getDashboard = asyncHandler(async (req, res) => {
     { totalHours: totalStudyHours, sessions: studySessions.length, focusScore: averageFocusScore }
   );
 
+=======
+>>>>>>> upstream/main
   res.json({
     success: true,
     data: {
@@ -142,6 +148,7 @@ export const getDashboard = asyncHandler(async (req, res) => {
         name: app.name,
         minutes: app.minutes
       })) || [],
+<<<<<<< HEAD
       recommendations: [...recommendations, ...balanceRecommendations],
       study: {
         totalHours: Math.round(totalStudyHours * 10) / 10,
@@ -149,6 +156,9 @@ export const getDashboard = asyncHandler(async (req, res) => {
         averageFocusScore: Math.round(averageFocusScore),
         goals: studyGoals.length
       },
+=======
+      recommendations,
+>>>>>>> upstream/main
       charts: {
         daily: dailyTimeSeries,
         weekly: weeklyTimeSeries
@@ -268,6 +278,7 @@ export const getRiskScore = asyncHandler(async (req, res) => {
     }
   });
 });
+<<<<<<< HEAD
 
 // Helper function to generate study-social media balance recommendations
 function generateBalanceRecommendations(usageStats, studyStats) {
@@ -306,3 +317,5 @@ function generateBalanceRecommendations(usageStats, studyStats) {
   
   return recommendations;
 }
+=======
+>>>>>>> upstream/main

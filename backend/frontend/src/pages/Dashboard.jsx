@@ -1,50 +1,22 @@
 import { useState, useEffect } from 'react';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-import { analyticsAPI, usageAPI, studyAPI } from '../services/api';
-=======
-import { analyticsAPI, usageAPI } from '../services/api';
->>>>>>> upstream/main
+import { analyticsAPI } from '../services/api';
 import { UsageEntry } from '../components/UsageEntry';
 import { UsageHistory } from '../components/UsageHistory';
-import { DigitalHonestyScore } from '../components/DigitalHonestyScore';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
 import { format } from 'date-fns';
-import { formatMinutesToHours } from '../utils/timeFormatter';
 
 const COLORS = ['#0ea5e9', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
 
 export const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
-  const [usageEntries, setUsageEntries] = useState([]);
-<<<<<<< HEAD
-  const [studyData, setStudyData] = useState(null);
-=======
->>>>>>> upstream/main
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     fetchDashboardData();
-    fetchUsageEntries();
-<<<<<<< HEAD
-    fetchStudyData();
   }, [refreshKey]);
 
-  const fetchStudyData = async () => {
-    try {
-      const response = await studyAPI.getAnalytics({ period: 'week' });
-      setStudyData(response.data.data);
-    } catch (err) {
-      console.error('Failed to load study data:', err);
-    }
-  };
-
-=======
-  }, [refreshKey]);
-
->>>>>>> upstream/main
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
@@ -58,18 +30,8 @@ export const Dashboard = () => {
     }
   };
 
-  const fetchUsageEntries = async () => {
-    try {
-      const response = await usageAPI.getAll({ limit: 1000 });
-      setUsageEntries(response.data.data.logs || []);
-    } catch (err) {
-      console.error('Failed to load usage entries:', err);
-    }
-  };
-
   const handleRefresh = () => {
     setRefreshKey(prev => prev + 1);
-    fetchUsageEntries();
   };
 
   if (loading) {
@@ -122,39 +84,6 @@ export const Dashboard = () => {
         </button>
       </div>
 
-<<<<<<< HEAD
-      {/* Study Overview */}
-      {studyData && (
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold">Study Overview</h2>
-            <Link to="/study-hub" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">
-              View Study Hub →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{studyData.totalHours}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Study Hours (Week)</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">{studyData.studyStreak}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Day Streak</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{studyData.averageFocusScore}%</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Focus Score</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">{studyData.totalSessions}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Total Sessions</div>
-            </div>
-          </div>
-        </div>
-      )}
-
-=======
->>>>>>> upstream/main
       {/* Risk Score Badge */}
       <div className="card">
         <div className="flex items-center justify-between mb-4">
@@ -187,16 +116,14 @@ export const Dashboard = () => {
         </p>
       </div>
 
-      {/* Digital Honesty Score */}
-      <DigitalHonestyScore entries={usageEntries} />
-
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Today */}
         <div className="card">
           <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Today</h3>
           <div className="text-3xl font-bold mb-1">
-            {formatMinutesToHours(daily.totalMinutes)}
+            {daily.totalMinutes.toFixed(0)}
+            <span className="text-lg text-gray-600 dark:text-gray-400"> min</span>
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">
             {daily.appCount} {daily.appCount === 1 ? 'app' : 'apps'}
@@ -207,10 +134,11 @@ export const Dashboard = () => {
         <div className="card">
           <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">This Week</h3>
           <div className="text-3xl font-bold mb-1">
-            {formatMinutesToHours(weekly.totalMinutes)}
+            {weekly.totalMinutes.toFixed(0)}
+            <span className="text-lg text-gray-600 dark:text-gray-400"> min</span>
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            Avg: {formatMinutesToHours(weekly.averageDailyMinutes)}/day
+            Avg: {weekly.averageDailyMinutes.toFixed(0)} min/day
           </div>
         </div>
 
@@ -218,7 +146,8 @@ export const Dashboard = () => {
         <div className="card">
           <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">This Month</h3>
           <div className="text-3xl font-bold mb-1">
-            {formatMinutesToHours(monthly.totalMinutes)}
+            {monthly.totalMinutes.toFixed(0)}
+            <span className="text-lg text-gray-600 dark:text-gray-400"> min</span>
           </div>
           <div className="text-sm text-gray-600 dark:text-gray-400">
             {monthly.daysActive} days active
@@ -242,7 +171,7 @@ export const Dashboard = () => {
               <YAxis stroke="#6b7280" />
               <Tooltip
                 labelFormatter={(date) => format(new Date(date), 'MMM dd, yyyy')}
-                formatter={(value) => [formatMinutesToHours(value), 'Usage']}
+                formatter={(value) => [`${value.toFixed(0)} min`, 'Usage']}
                 contentStyle={{
                   backgroundColor: 'rgba(255, 255, 255, 0.95)',
                   border: '1px solid #e5e7eb',
@@ -275,14 +204,14 @@ export const Dashboard = () => {
                   cx="50%"
                   cy="50%"
                   outerRadius={100}
-                  label={({ name, minutes }) => `${name}: ${formatMinutesToHours(minutes)}`}
+                  label={({ name, minutes }) => `${name}: ${minutes.toFixed(0)}m`}
                 >
                   {topApps.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
                 <Tooltip
-                  formatter={(value) => [formatMinutesToHours(value), 'Usage']}
+                  formatter={(value) => [`${value.toFixed(0)} min`, 'Usage']}
                 />
               </PieChart>
             </ResponsiveContainer>

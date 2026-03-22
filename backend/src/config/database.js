@@ -33,6 +33,7 @@ const connectDB = async () => {
     // Import models to register them
     const UserModule = await import('../models/User.js');
     const UsageLogModule = await import('../models/UsageLog.js');
+<<<<<<< HEAD
     const StudySessionModule = await import('../models/StudySession.js');
     const StudyGoalModule = await import('../models/StudyGoal.js');
     
@@ -40,16 +41,24 @@ const connectDB = async () => {
     const UsageLog = UsageLogModule.default;
     const StudySession = StudySessionModule.default;
     const StudyGoal = StudyGoalModule.default;
+=======
+    
+    const User = UserModule.default;
+    const UsageLog = UsageLogModule.default;
+>>>>>>> upstream/main
 
     // Define associations
     User.hasMany(UsageLog, { foreignKey: 'userId', as: 'usageLogs' });
     UsageLog.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+<<<<<<< HEAD
     
     User.hasMany(StudySession, { foreignKey: 'userId', as: 'studySessions' });
     StudySession.belongsTo(User, { foreignKey: 'userId', as: 'user' });
     
     User.hasMany(StudyGoal, { foreignKey: 'userId', as: 'studyGoals' });
     StudyGoal.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+=======
+>>>>>>> upstream/main
 
     // Sync models (disable alter:true in production)
     await sequelize.sync({ alter: true });

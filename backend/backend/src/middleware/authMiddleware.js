@@ -19,7 +19,11 @@ export const authenticate = async (req, res, next) => {
     const token = authHeader.substring(7); // Remove 'Bearer ' prefix
     
     try {
+<<<<<<< HEAD
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+=======
+      const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+>>>>>>> upstream/main
       
       // Find user by ID
       const user = await User.findByPk(decoded.userId);
