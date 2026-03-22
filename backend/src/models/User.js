@@ -42,7 +42,7 @@ const User = sequelize.define('User', {
       name: 'email',
       msg: 'Email already exists'
     },
-    lowercase: true, // ✅ CORRECT WAY (Sequelize supported)
+    toLowerCase: true,
     validate: {
       isEmail: {
         msg: 'Please provide a valid email address'

@@ -11,10 +11,7 @@ dotenv.config();
 import authRoutes from './routes/authRoutes.js';
 import usageRoutes from './routes/usageRoutes.js';
 import analyticsRoutes from './routes/analyticsRoutes.js';
-<<<<<<< HEAD
 import studyRoutes from './routes/studyRoutes.js';
-=======
->>>>>>> upstream/main
 
 // Initialize Express app
 const app = express();
@@ -40,10 +37,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/usage', usageRoutes);
 app.use('/api/analytics', analyticsRoutes);
-<<<<<<< HEAD
 app.use('/api/study', studyRoutes);
-=======
->>>>>>> upstream/main
 
 // 404 handler
 app.use((req, res) => {

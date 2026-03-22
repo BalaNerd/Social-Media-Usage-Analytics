@@ -9,10 +9,7 @@ import { Dashboard } from './pages/Dashboard';
 import { DigitalMirrorMode } from './pages/DigitalMirrorMode';
 import { FutureRegretSimulator } from './pages/FutureRegretSimulator';
 import { BeforeAfterTracking } from './pages/BeforeAfterTracking';
-<<<<<<< HEAD
 import { StudyHub } from './pages/StudyHub';
-=======
->>>>>>> upstream/main
 import { useEffect } from 'react';
 
 function App() {
@@ -80,7 +77,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-<<<<<<< HEAD
       <Route
         path="/study-hub"
         element={
@@ -91,8 +87,6 @@ function App() {
           </ProtectedRoute>
         }
       />
-=======
->>>>>>> upstream/main
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

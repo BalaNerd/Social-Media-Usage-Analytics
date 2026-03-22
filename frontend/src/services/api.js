@@ -89,7 +89,6 @@ export const analyticsAPI = {
   getRiskScore: () => api.get('/analytics/risk-score')
 };
 
-<<<<<<< HEAD
 // Study API
 export const studyAPI = {
   // Study Sessions
@@ -109,7 +108,4 @@ export const studyAPI = {
   // Study Analytics
   getAnalytics: (params) => api.get('/study/analytics', { params })
 };
-
-=======
->>>>>>> upstream/main
 export default api;

@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import { analyticsAPI, usageAPI, studyAPI } from '../services/api';
-=======
-import { analyticsAPI, usageAPI } from '../services/api';
->>>>>>> upstream/main
 import { UsageEntry } from '../components/UsageEntry';
 import { UsageHistory } from '../components/UsageHistory';
 import { DigitalHonestyScore } from '../components/DigitalHonestyScore';
@@ -17,10 +13,7 @@ const COLORS = ['#0ea5e9', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
 export const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [usageEntries, setUsageEntries] = useState([]);
-<<<<<<< HEAD
   const [studyData, setStudyData] = useState(null);
-=======
->>>>>>> upstream/main
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
@@ -28,7 +21,6 @@ export const Dashboard = () => {
   useEffect(() => {
     fetchDashboardData();
     fetchUsageEntries();
-<<<<<<< HEAD
     fetchStudyData();
   }, [refreshKey]);
 
@@ -40,11 +32,6 @@ export const Dashboard = () => {
       console.error('Failed to load study data:', err);
     }
   };
-
-=======
-  }, [refreshKey]);
-
->>>>>>> upstream/main
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
@@ -122,7 +109,6 @@ export const Dashboard = () => {
         </button>
       </div>
 
-<<<<<<< HEAD
       {/* Study Overview */}
       {studyData && (
         <div className="card">
@@ -152,9 +138,6 @@ export const Dashboard = () => {
           </div>
         </div>
       )}
-
-=======
->>>>>>> upstream/main
       {/* Risk Score Badge */}
       <div className="card">
         <div className="flex items-center justify-between mb-4">
